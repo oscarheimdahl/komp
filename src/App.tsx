@@ -1,31 +1,20 @@
-import { MouseEvent as ReactMouseEvent, useEffect, useRef } from 'react';
+import {
+  MouseEvent as ReactMouseEvent,
+  // TouchEvent as ReactTouchEvent,
+  useEffect,
+  useRef,
+} from 'react';
 
 import { Plus } from 'lucide-react';
 
-import { atom, useAtom } from 'jotai';
-import moment from 'moment';
+import { useAtom } from 'jotai';
 import {
   activeSpanMultiplier,
   inactiveSpanMultiplier,
 } from './helpers/spanMultipliers';
 
 import { DateTimePicker } from './components/DateTimePicker';
-
-type Handle = {
-  id: string;
-  x: number;
-  active: boolean;
-};
-
-export const startDateAtom = atom(moment());
-const sliderWidthAtom = atom(0);
-const handlesAtom = atom<Handle[]>([
-  {
-    id: crypto.randomUUID(),
-    x: 60,
-    active: true,
-  },
-]);
+import { handlesAtom, sliderWidthAtom, startDateAtom } from './helpers/store';
 
 function App() {
   const [handles] = useAtom(handlesAtom);
@@ -37,10 +26,10 @@ function App() {
 
     const newSliderWidth = sliderRef.current.getBoundingClientRect().width;
     setSliderWidth(newSliderWidth);
-  }, []);
+  }, [setSliderWidth]);
 
   return (
-    <div className='size-full flex flex-col gap-4 justify-center items-center'>
+    <div className='scale-50 sm:scale-100 size-full flex flex-col gap-4 justify-center items-center'>
       <div className='flex gap-8'>
         <div className='flex gap-2 items-center'>
           <div className='size-4 rounded-sm bg-emerald-500'></div>
@@ -102,10 +91,6 @@ function Total() {
     </div>
   );
 }
-
-// function xToTime(x: number) {
-//   return moment();
-// }
 
 function NewHandleButton() {
   const [handles, setHandles] = useAtom(handlesAtom);
@@ -242,6 +227,8 @@ function SliderHandle({ handleIndex }: SliderHandleProps) {
         <button
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
+          // onTouchStart={handleMouseDown}
+          // onTouchEnd={handleMouseUp}
           className={`
             bg-white ${border} shadow-md rounded-full absolute -top-3 -left-3 size-6 border-4`}
         ></button>

@@ -1,7 +1,7 @@
 'use client';
 
 import { sv } from 'date-fns/locale';
-import { startDateAtom } from '@/App';
+
 import { Button } from '@/components/shadcn/Button';
 import { Calendar } from '@/components/shadcn/Calendar';
 import {
@@ -13,6 +13,7 @@ import { TimePickerDemo } from '@/components/shadcn/TimePicker/TimePicker';
 import { cn } from '@/helpers/cn';
 import { useAtom } from 'jotai';
 import moment from 'moment';
+import { startDateAtom } from '@/helpers/store';
 
 export function DateTimePicker() {
   const [startDate, setStartDate] = useAtom(startDateAtom);
