@@ -24,16 +24,10 @@ export function DateTimePicker() {
         <Button
           variant={'outline'}
           className={cn(
-            ' justify-start text-black text-left font-normal',
-            !startDate && 'text-muted-foreground'
+            ' justify-start shadow-md text-black text-left font-normal'
           )}
         >
-          {/* <CalendarIcon className='mr-2 h-4 w-4' /> */}
-          {startDate ? (
-            startDate.format('DD MMMM - HH:mm')
-          ) : (
-            <span>Pick a date</span>
-          )}
+          {startDate.format('DD MMMM - HH:mm')}
         </Button>
       </PopoverTrigger>
       <PopoverContent className='w-auto p-0'>
@@ -42,7 +36,15 @@ export function DateTimePicker() {
           ISOWeek
           locale={sv}
           selected={startDate.toDate()}
-          onSelect={(date) => setStartDate(moment(date))}
+          onSelect={(date) => {
+            const selectedDate = moment(date);
+            selectedDate.set({
+              hour: startDate.hour(),
+              minute: startDate.minute(),
+              second: startDate.second(),
+            });
+            return setStartDate(moment(selectedDate));
+          }}
           initialFocus
         />
         <div className='p-3 border-t border-border'>

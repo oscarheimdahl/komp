@@ -29,32 +29,34 @@ function App() {
   }, [setSliderWidth]);
 
   return (
-    <div className='scale-50 sm:scale-100 size-full flex flex-col gap-4 justify-center items-center'>
-      <div className='flex gap-8'>
-        <div className='flex gap-2 items-center'>
-          <div className='size-4 rounded-sm bg-emerald-500'></div>
-          <span className='text-gray-800 text-sm'>Aktiv tid</span>
+    <>
+      <div className='scale-50 sm:scale-100 size-full flex flex-col gap-4 justify-center items-center'>
+        <div className='flex gap-8'>
+          <div className='flex gap-2 items-center'>
+            <div className='size-4 rounded-sm bg-emerald-500'></div>
+            <span className='text-gray-800 text-sm'>Aktiv tid</span>
+          </div>
+          <div className='flex gap-2 items-center'>
+            <div className='size-4 rounded-sm bg-gray-500'></div>
+            <span className='text-gray-800 text-sm'>Passiv tid</span>
+          </div>
         </div>
-        <div className='flex gap-2 items-center'>
-          <div className='size-4 rounded-sm bg-gray-500'></div>
-          <span className='text-gray-800 text-sm'>Passiv tid</span>
+        <div className='p-8 border bg-white w-fit border-zinc-200 rounded-md flex gap-4 items-center'>
+          <DateTimePicker />
+          <div
+            ref={sliderRef}
+            className='h-[1px] rounded-full flex w-[1000px] bg-zinc-400 relative'
+          >
+            {handles.map((_, i) => {
+              return <SliderHandle key={i} handleIndex={i} />;
+            })}
+          </div>
+          <NewHandleButton />
         </div>
-      </div>
-      <div className='p-8 border  w-fit border-zinc-200 rounded-md flex gap-4 items-center'>
-        <DateTimePicker />
-        <div
-          ref={sliderRef}
-          className='h-[1px] rounded-full flex w-[1000px] bg-zinc-400 relative'
-        >
-          {handles.map((_, i) => {
-            return <SliderHandle key={i} handleIndex={i} />;
-          })}
-        </div>
-        <NewHandleButton />
-      </div>
 
-      <Total />
-    </div>
+        <Total />
+      </div>
+    </>
   );
 }
 
@@ -110,9 +112,9 @@ function NewHandleButton() {
           },
         ]);
       }}
-      className='rounded-full p-1 bg-zinc-500 text-white'
+      className='rounded-md p-1 border text-white shadow-md'
     >
-      <Plus strokeWidth={3} size={16} />
+      <Plus className='text-gray-800' strokeWidth={3} size={16} />
     </button>
   );
 }
@@ -227,8 +229,6 @@ function SliderHandle({ handleIndex }: SliderHandleProps) {
         <button
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
-          // onTouchStart={handleMouseDown}
-          // onTouchEnd={handleMouseUp}
           className={`
             bg-white ${border} shadow-md rounded-full absolute -top-3 -left-3 size-6 border-4`}
         ></button>

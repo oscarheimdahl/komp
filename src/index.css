@@ -85,3 +85,42 @@ body,
 #root {
   @apply size-full;
 }
+
+.float {
+  animation: float 6s 1 ease-in;
+  transform: translateY(var(--offsetYFrom));
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(var(--offsetYFrom));
+  }
+  90% {
+    transform: translateY(var(--offsetYTo));
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(var(--offsetYTo));
+  }
+}
+
+.slalom {
+  animation: slalom 6s ease-in-out infinite;
+}
+
+@keyframes slalom {
+  100% {
+    transform: translateX(var(--offsetX));
+  }
+}
+
+.grow {
+  animation: grow 6s ease-in-out infinite;
+}
+
+@keyframes grow {
+  100% {
+    transform: scale(var(--scale));
+  }
+}
