@@ -112,9 +112,9 @@ function NewHandleButton() {
           },
         ]);
       }}
-      className='rounded-md p-1 border text-white shadow-md'
+      className='rounded-md p-1 border text-white shadow-sm'
     >
-      <Plus className='text-gray-800' strokeWidth={3} size={16} />
+      <Plus className='text-gray-800' strokeWidth={2} size={16} />
     </button>
   );
 }

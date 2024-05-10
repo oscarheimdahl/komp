@@ -24,7 +24,7 @@ export function DateTimePicker() {
         <Button
           variant={'outline'}
           className={cn(
-            ' justify-start shadow-md text-black text-left font-normal'
+            ' justify-start shadow-sm text-black text-left font-normal'
           )}
         >
           {startDate.format('DD MMMM - HH:mm')}

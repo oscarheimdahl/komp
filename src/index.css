@@ -87,7 +87,7 @@ body,
 }
 
 .float {
-  animation: float 6s 1 ease-in;
+  animation: float 10s 1 ease-in;
   transform: translateY(var(--offsetYFrom));
 }
 
@@ -106,7 +106,7 @@ body,
 }
 
 .slalom {
-  animation: slalom 6s ease-in-out infinite;
+  animation: slalom 10s ease-in-out infinite;
 }
 
 @keyframes slalom {
@@ -116,7 +116,7 @@ body,
 }
 
 .grow {
-  animation: grow 6s ease-in-out infinite;
+  animation: grow 10s ease-in-out infinite;
 }
 
 @keyframes grow {
